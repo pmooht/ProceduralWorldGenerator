@@ -2,33 +2,57 @@
 using System.Collections;
 
 [CreateAssetMenu()]
-public class HeightMapSettings : UpdatableData {
+public class HeightMapSettings : UpdatableData
+{
 
-	public NoiseSettings noiseSettings;
+    public NoiseSettings noiseSettings;
 
-	public bool useFalloff;
+    [Header("Falloff Settings")]
+    public bool useFalloff;
 
-	public float heightMultiplier;
-	public AnimationCurve heightCurve;
+    [Range(1f, 10f)]
+    [Tooltip("Độ dốc của rìa đảo. Cao hơn = rìa dốc hơn")]
+    public float falloffStrength = 3f;
 
-	public float minHeight {
-		get {
-			return heightMultiplier * heightCurve.Evaluate (0);
-		}
-	}
+    [Range(0.5f, 5f)]
+    [Tooltip("Kích thước đảo. Cao hơn = đảo nhỏ hơn")]
+    public float falloffSize = 2.2f;
 
-	public float maxHeight {
-		get {
-			return heightMultiplier * heightCurve.Evaluate (1);
-		}
-	}
+    [Range(0f, 1f)]
+    [Tooltip("Độ mạnh của falloff effect (0 = không có effect, 1 = max effect)")]
+    public float falloffIntensity = 1f;
 
-	#if UNITY_EDITOR
+    [Header("Height Settings")]
+    public float heightMultiplier;
+    public AnimationCurve heightCurve;
 
-	protected override void OnValidate() {
-		noiseSettings.ValidateValues ();
-		base.OnValidate ();
-	}
-	#endif
+    public float minHeight
+    {
+        get
+        {
+            return heightMultiplier * heightCurve.Evaluate(0);
+        }
+    }
 
+    public float maxHeight
+    {
+        get
+        {
+            return heightMultiplier * heightCurve.Evaluate(1);
+        }
+    }
+
+#if UNITY_EDITOR
+    protected override void OnValidate()
+    {
+        noiseSettings.ValidateValues();
+
+        // Validate falloff values
+        falloffStrength = Mathf.Max(falloffStrength, 1f);
+        falloffSize = Mathf.Max(falloffSize, 0.5f);
+        falloffIntensity = Mathf.Clamp01(falloffIntensity);
+
+        base.OnValidate();
+    }
+#endif
 }
