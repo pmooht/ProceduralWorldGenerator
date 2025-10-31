@@ -19,13 +19,13 @@ MonoBehaviour:
     octaves: 6
     persistance: 0.316
     lacunarity: 2
-    seed: 438
+    seed: 301
     offset: {x: 0, y: 0}
   useFalloff: 1
   falloffStrength: 10
   falloffSize: 1.49
   falloffIntensity: 1
-  heightMultiplier: 100
+  heightMultiplier: 50
   heightCurve:
     serializedVersion: 2
     m_Curve:
