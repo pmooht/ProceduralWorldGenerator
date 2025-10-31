@@ -20,17 +20,17 @@ public class DayNightCycle : MonoBehaviour
     public Light sunLight;
     public Light moonLight;
 
-    [Header("Sun Settings")]
-    public Gradient sunColorGradient;
-    public AnimationCurve sunIntensityCurve;
+    //[Header("Sun Settings")]
+    //public Gradient sunColorGradient;
+    //public AnimationCurve sunIntensityCurve;
 
-    [Header("Moon Settings")]
-    public Gradient moonColorGradient;
-    public AnimationCurve moonIntensityCurve;
+    //[Header("Moon Settings")]
+    //public Gradient moonColorGradient;
+    //public AnimationCurve moonIntensityCurve;
 
-    [Header("Ambient")]
-    public Gradient ambientColorGradient;
-    public AnimationCurve ambientIntensityCurve;
+    //[Header("Ambient")]
+    //public Gradient ambientColorGradient;
+    //public AnimationCurve ambientIntensityCurve;
 
     [Header("Fog")]
     public bool useFog = true;
@@ -51,84 +51,84 @@ public class DayNightCycle : MonoBehaviour
     void Start()
     {
         currentTime = startTime;
-        InitializeGradients();
+        //InitializeGradients();
         UpdateLighting();
     }
 
-    void InitializeGradients()
-    {
-        // Default gradients if not set
-        if (sunColorGradient.colorKeys.Length == 0)
-        {
-            sunColorGradient = CreateDefaultSunGradient();
-        }
-        if (moonColorGradient.colorKeys.Length == 0)
-        {
-            moonColorGradient = CreateDefaultMoonGradient();
-        }
-        if (ambientColorGradient.colorKeys.Length == 0)
-        {
-            ambientColorGradient = CreateDefaultAmbientGradient();
-        }
-        if (fogColorGradient.colorKeys.Length == 0)
-        {
-            fogColorGradient = CreateDefaultFogGradient();
-        }
-    }
+    //void InitializeGradients()
+    //{
+    //    // Default gradients if not set
+    //    if (sunColorGradient.colorKeys.Length == 0)
+    //    {
+    //        sunColorGradient = CreateDefaultSunGradient();
+    //    }
+    //    if (moonColorGradient.colorKeys.Length == 0)
+    //    {
+    //        moonColorGradient = CreateDefaultMoonGradient();
+    //    }
+    //    if (ambientColorGradient.colorKeys.Length == 0)
+    //    {
+    //        ambientColorGradient = CreateDefaultAmbientGradient();
+    //    }
+    //    if (fogColorGradient.colorKeys.Length == 0)
+    //    {
+    //        fogColorGradient = CreateDefaultFogGradient();
+    //    }
+    //}
 
-    Gradient CreateDefaultSunGradient()
-    {
-        Gradient g = new Gradient();
-        GradientColorKey[] colors = new GradientColorKey[7];
-        colors[0] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 0f);    // Midnight
-        colors[1] = new GradientColorKey(new Color(1f, 0.42f, 0.21f), 0.2f);   // Dawn
-        colors[2] = new GradientColorKey(new Color(1f, 0.97f, 0.86f), 0.3f);   // Morning
-        colors[3] = new GradientColorKey(new Color(1f, 1f, 1f), 0.5f);         // Noon
-        colors[4] = new GradientColorKey(new Color(1f, 0.97f, 0.86f), 0.7f);   // Afternoon
-        colors[5] = new GradientColorKey(new Color(1f, 0.42f, 0.21f), 0.8f);   // Dusk
-        colors[6] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 1f);    // Night
+    //Gradient CreateDefaultSunGradient()
+    //{
+    //    Gradient g = new Gradient();
+    //    GradientColorKey[] colors = new GradientColorKey[7];
+    //    colors[0] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 0f);    // Midnight
+    //    colors[1] = new GradientColorKey(new Color(1f, 0.42f, 0.21f), 0.2f);   // Dawn
+    //    colors[2] = new GradientColorKey(new Color(1f, 0.97f, 0.86f), 0.3f);   // Morning
+    //    colors[3] = new GradientColorKey(new Color(1f, 1f, 1f), 0.5f);         // Noon
+    //    colors[4] = new GradientColorKey(new Color(1f, 0.97f, 0.86f), 0.7f);   // Afternoon
+    //    colors[5] = new GradientColorKey(new Color(1f, 0.42f, 0.21f), 0.8f);   // Dusk
+    //    colors[6] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 1f);    // Night
 
-        GradientAlphaKey[] alphas = new GradientAlphaKey[2];
-        alphas[0] = new GradientAlphaKey(1f, 0f);
-        alphas[1] = new GradientAlphaKey(1f, 1f);
+    //    GradientAlphaKey[] alphas = new GradientAlphaKey[2];
+    //    alphas[0] = new GradientAlphaKey(1f, 0f);
+    //    alphas[1] = new GradientAlphaKey(1f, 1f);
 
-        g.SetKeys(colors, alphas);
-        return g;
-    }
+    //    g.SetKeys(colors, alphas);
+    //    return g;
+    //}
 
-    Gradient CreateDefaultMoonGradient()
-    {
-        Gradient g = new Gradient();
-        GradientColorKey[] colors = new GradientColorKey[3];
-        colors[0] = new GradientColorKey(new Color(0.69f, 0.77f, 0.87f), 0f);
-        colors[1] = new GradientColorKey(new Color(0.4f, 0.45f, 0.55f), 0.5f);
-        colors[2] = new GradientColorKey(new Color(0.69f, 0.77f, 0.87f), 1f);
+    //Gradient CreateDefaultMoonGradient()
+    //{
+    //    Gradient g = new Gradient();
+    //    GradientColorKey[] colors = new GradientColorKey[3];
+    //    colors[0] = new GradientColorKey(new Color(0.69f, 0.77f, 0.87f), 0f);
+    //    colors[1] = new GradientColorKey(new Color(0.4f, 0.45f, 0.55f), 0.5f);
+    //    colors[2] = new GradientColorKey(new Color(0.69f, 0.77f, 0.87f), 1f);
 
-        GradientAlphaKey[] alphas = new GradientAlphaKey[2];
-        alphas[0] = new GradientAlphaKey(1f, 0f);
-        alphas[1] = new GradientAlphaKey(1f, 1f);
+    //    GradientAlphaKey[] alphas = new GradientAlphaKey[2];
+    //    alphas[0] = new GradientAlphaKey(1f, 0f);
+    //    alphas[1] = new GradientAlphaKey(1f, 1f);
 
-        g.SetKeys(colors, alphas);
-        return g;
-    }
+    //    g.SetKeys(colors, alphas);
+    //    return g;
+    //}
 
-    Gradient CreateDefaultAmbientGradient()
-    {
-        Gradient g = new Gradient();
-        GradientColorKey[] colors = new GradientColorKey[5];
-        colors[0] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 0f);
-        colors[1] = new GradientColorKey(new Color(1f, 0.63f, 0.47f), 0.25f);
-        colors[2] = new GradientColorKey(new Color(1f, 1f, 1f), 0.5f);
-        colors[3] = new GradientColorKey(new Color(1f, 0.71f, 0.76f), 0.75f);
-        colors[4] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 1f);
+    //Gradient CreateDefaultAmbientGradient()
+    //{
+    //    Gradient g = new Gradient();
+    //    GradientColorKey[] colors = new GradientColorKey[5];
+    //    colors[0] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 0f);
+    //    colors[1] = new GradientColorKey(new Color(1f, 0.63f, 0.47f), 0.25f);
+    //    colors[2] = new GradientColorKey(new Color(1f, 1f, 1f), 0.5f);
+    //    colors[3] = new GradientColorKey(new Color(1f, 0.71f, 0.76f), 0.75f);
+    //    colors[4] = new GradientColorKey(new Color(0.1f, 0.1f, 0.24f), 1f);
 
-        GradientAlphaKey[] alphas = new GradientAlphaKey[2];
-        alphas[0] = new GradientAlphaKey(1f, 0f);
-        alphas[1] = new GradientAlphaKey(1f, 1f);
+    //    GradientAlphaKey[] alphas = new GradientAlphaKey[2];
+    //    alphas[0] = new GradientAlphaKey(1f, 0f);
+    //    alphas[1] = new GradientAlphaKey(1f, 1f);
 
-        g.SetKeys(colors, alphas);
-        return g;
-    }
+    //    g.SetKeys(colors, alphas);
+    //    return g;
+    //}
 
     Gradient CreateDefaultFogGradient()
     {
@@ -172,8 +172,8 @@ public class DayNightCycle : MonoBehaviour
         {
             float sunAngle = timeOfDay * 360f - 90f;
             sunLight.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
-            sunLight.color = sunColorGradient.Evaluate(timeOfDay);
-            sunLight.intensity = sunIntensityCurve.Evaluate(timeOfDay);
+           // sunLight.color = sunColorGradient.Evaluate(timeOfDay);
+           // sunLight.intensity = sunIntensityCurve.Evaluate(timeOfDay);
         }
 
         // Moon rotation and properties
@@ -181,13 +181,13 @@ public class DayNightCycle : MonoBehaviour
         {
             float moonAngle = timeOfDay * 360f + 90f;
             moonLight.transform.rotation = Quaternion.Euler(moonAngle, 170f, 0f);
-            moonLight.color = moonColorGradient.Evaluate(timeOfDay);
-            moonLight.intensity = moonIntensityCurve.Evaluate(timeOfDay);
+            //moonLight.color = moonColorGradient.Evaluate(timeOfDay);
+           // moonLight.intensity = moonIntensityCurve.Evaluate(timeOfDay);
         }
 
         // Ambient lighting
-        RenderSettings.ambientLight = ambientColorGradient.Evaluate(timeOfDay);
-        RenderSettings.ambientIntensity = ambientIntensityCurve.Evaluate(timeOfDay);
+        //RenderSettings.ambientLight = ambientColorGradient.Evaluate(timeOfDay);
+        //RenderSettings.ambientIntensity = ambientIntensityCurve.Evaluate(timeOfDay);
 
         // Fog
         if (useFog)
